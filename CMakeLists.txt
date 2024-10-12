@@ -6,4 +6,5 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(untitled6 main.cpp
         Figure.h
         Board.h
-        FilleHandler.h)
+        FilleHandler.h
+        Board.cpp)

@@ -15,6 +15,8 @@ public:
     virtual std::string getParameters() const = 0;;
 
     int getID();
+
+    void setID(int id);
 };
 
 

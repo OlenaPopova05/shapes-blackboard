@@ -4,6 +4,8 @@
 
 class Board {
 private:
+    static constexpr int BOARD_WIDTH = 80;
+    static constexpr int BOARD_HEIGHT = 25;
     int figureID;
     std::vector<std::vector<char>> grid;
     std::vector<std::unique_ptr<Figure>> figures;
@@ -11,7 +13,7 @@ private:
 public:
     Board();
 
-    void addFigure(std::unique_ptr<Figure> shape);
+    void addFigure(std::unique_ptr<Figure> figure);
 
     void removeLastFigure();
 
