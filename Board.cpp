@@ -1,9 +1,14 @@
 #include "iostream"
 #include "Board.h"
+#include "Figure.h"
 
 Board::Board() : figureID(0), grid(BOARD_HEIGHT, std::vector<char>(BOARD_WIDTH, '~')) {}
 
 void Board::addFigure(std::unique_ptr<Figure> figure) {
+    if (!figure->checkDimensions(BOARD_WIDTH, BOARD_HEIGHT)) {
+        std::cout << "Invalid dimensions" << std::endl;
+        return;
+    }
     figures.push_back(std::make_pair(figureID++, std::move(figure)));
 }
 

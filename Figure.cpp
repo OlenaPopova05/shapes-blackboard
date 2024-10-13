@@ -15,6 +15,11 @@ void Circle::draw(std::vector<std::vector<char>>& board) const {
     }
 }
 
+bool Circle::checkDimensions(int boardWidth, int boardHeight) const {
+    return (x - radius >= 0 && x + radius < boardWidth &&
+            y - radius >= 0 && y + radius < boardHeight);
+}
+
 std::string Circle::getParameters() const {
     return " (" + std::to_string(x) + ", " + std::to_string(y) + ") radius " + std::to_string(radius);
 }
@@ -41,6 +46,10 @@ void Triangle::draw(std::vector<std::vector<char>>& board) const {
     }
 }
 
+bool Triangle::checkDimensions(int boardWidth, int boardHeight) const {
+    return (x >= 0 && x < boardWidth && y >= 0 && y + height < boardHeight);
+}
+
 std::string Triangle::getParameters() const {
     return " (" + std::to_string(x) + ", " + std::to_string(y) + ") height " + std::to_string(height);
 }
@@ -59,6 +68,10 @@ void Rectangle::draw(std::vector<std::vector<char>>& board) const {
             }
         }
     }
+}
+
+bool Rectangle::checkDimensions(int boardWidth, int boardHeight) const {
+    return (x >= 0 && x + width <= boardWidth && y >= 0 && y + height <= boardHeight);
 }
 
 std::string Rectangle::getParameters() const {
@@ -84,6 +97,11 @@ void Line::draw(std::vector<std::vector<char>>& board) const {
             }
         }
     }
+}
+
+bool Line::checkDimensions(int boardWidth, int boardHeight) const {
+    return (x1 >= 0 && x1 < boardWidth && y1 >= 0 && y1 < boardHeight &&
+            x2 >= 0 && x2 < boardWidth && y2 >= 0 && y2 < boardHeight);
 }
 
 std::string Line::getParameters() const {
