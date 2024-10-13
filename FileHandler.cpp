@@ -70,7 +70,7 @@ void FileHandler::load(Board& board, const std::string& file_path) {
                 return;
             }
             iss.get();
-            board.addFigure(std::make_unique<Line>(x1, y1, x2, y2));
+            board.addFigureFromFile(id,std::make_unique<Line>(x1, y1, x2, y2));
         } else if (type == "circle") {
             int x, y, radius;
             if (!(iss >> token) || token[0] != '(' || token.back() != ',') {
@@ -88,7 +88,7 @@ void FileHandler::load(Board& board, const std::string& file_path) {
                 std::cout << "Invalid circle parameters: " << line << std::endl;
                 return;
             }
-            board.addFigure(std::make_unique<Circle>(x, y, radius));
+            board.addFigureFromFile(id, std::make_unique<Circle>(x, y, radius));
         } else if (type == "rectangle") {
             int x, y, width, height;
             if (!(iss >> token) || token[0] != '(' || token.back() != ',') {
@@ -107,7 +107,7 @@ void FileHandler::load(Board& board, const std::string& file_path) {
                 std::cout << "Invalid rectangle parameters: " << line << std::endl;
                 return;
             }
-            board.addFigure(std::make_unique<Rectangle>(x, y, width, height));
+            board.addFigureFromFile(id, std::make_unique<Rectangle>(x, y, width, height));
         } else if (type == "triangle") {
             int x, y, height;
             if (!(iss >> token) || token[0] != '(' || token.back() != ',') {
@@ -125,7 +125,7 @@ void FileHandler::load(Board& board, const std::string& file_path) {
                 std::cout << "Invalid triangle parameters: " << line << std::endl;
                 return;
             }
-            board.addFigure(std::make_unique<Triangle>(x, y, height));
+            board.addFigureFromFile(id, std::make_unique<Triangle>(x, y, height));
         } else {
             std::cout << "Unsupported figure type: " << type << std::endl;
         }

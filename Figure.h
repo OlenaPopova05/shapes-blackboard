@@ -25,7 +25,7 @@ public:
 
     void draw(std::vector<std::vector<char>>& board) const override;
 
-    bool checkDimensions(int boardWidth, int boardHeight) const;
+    bool checkDimensions(int boardWidth, int boardHeight) const override;
 
     std::string getParameters() const override;
 };
@@ -39,7 +39,7 @@ public:
 
     void draw(std::vector<std::vector<char>>& board) const override;
 
-    bool checkDimensions(int boardWidth, int boardHeight) const;
+    bool checkDimensions(int boardWidth, int boardHeight) const override;
 
     std::string getParameters() const override;
 };
@@ -53,7 +53,7 @@ public:
 
     void draw(std::vector<std::vector<char>>& board) const override;
 
-    bool checkDimensions(int boardWidth, int boardHeight) const;
+    bool checkDimensions(int boardWidth, int boardHeight) const override;
 
     std::string getParameters() const override;
 };
@@ -67,7 +67,7 @@ public:
 
     void draw(std::vector<std::vector<char>>& board) const override;
 
-    bool checkDimensions(int boardWidth, int boardHeight) const;
+    bool checkDimensions(int boardWidth, int boardHeight) const override;
 
     std::string getParameters() const override;
 };

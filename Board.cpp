@@ -12,6 +12,10 @@ void Board::addFigure(std::unique_ptr<Figure> figure) {
     figures.push_back(std::make_pair(figureID++, std::move(figure)));
 }
 
+void Board::addFigureFromFile(int id, std::unique_ptr<Figure> figure) {
+    figures.push_back(std::make_pair(id, std::move(figure)));
+}
+
 void Board::removeLastFigure() {
     if (!figures.empty()) {
         figures.pop_back();

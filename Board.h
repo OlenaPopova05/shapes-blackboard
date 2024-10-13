@@ -16,6 +16,8 @@ public:
 
     void addFigure(std::unique_ptr<Figure> figure);
 
+    void addFigureFromFile(int id, std::unique_ptr<Figure> figure);
+
     void removeLastFigure();
 
     void clearBoard();
