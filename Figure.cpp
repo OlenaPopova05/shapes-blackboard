@@ -16,7 +16,7 @@ void Circle::draw(std::vector<std::vector<char>>& board) const {
 }
 
 std::string Circle::getParameters() const {
-    return " Circle at (" + std::to_string(x) + ", " + std::to_string(y) + ") with radius " + std::to_string(radius);
+    return " (" + std::to_string(x) + ", " + std::to_string(y) + ") radius " + std::to_string(radius);
 }
 
 Triangle::Triangle(int x, int y, int height) : x(x), y(y), height(height) {}
@@ -42,7 +42,7 @@ void Triangle::draw(std::vector<std::vector<char>>& board) const {
 }
 
 std::string Triangle::getParameters() const {
-    return " Triangle at (" + std::to_string(x) + ", " + std::to_string(y) + ") with height " + std::to_string(height);
+    return " (" + std::to_string(x) + ", " + std::to_string(y) + ") height " + std::to_string(height);
 }
 
 Rectangle::Rectangle(int x, int y, int width, int height) : x(x), y(y), width(width), height(height) {}
@@ -62,7 +62,7 @@ void Rectangle::draw(std::vector<std::vector<char>>& board) const {
 }
 
 std::string Rectangle::getParameters() const {
-    return " Rectangle at (" + std::to_string(x) + ", " + std::to_string(y) + ") with width " + std::to_string(width) + " and height " + std::to_string(height);
+    return " (" + std::to_string(x) + ", " + std::to_string(y) + ") width " + std::to_string(width) + " height " + std::to_string(height);
 }
 
 Line::Line(int x1, int y1, int x2, int y2) : x1(x1), y1(y1), x2(x2), y2(y2) {}
@@ -87,6 +87,6 @@ void Line::draw(std::vector<std::vector<char>>& board) const {
 }
 
 std::string Line::getParameters() const {
-    return " Line from (" + std::to_string(x1) + ", " + std::to_string(y1) + ") to (" + std::to_string(x2) + ", " + std::to_string(y2) + ")";
+    return " from (" + std::to_string(x1) + ", " + std::to_string(y1) + ") to (" + std::to_string(x2) + ", " + std::to_string(y2) + ")";
 }
 

@@ -17,17 +17,21 @@ void Board::clearBoard() {
     figures.clear();
     for (auto& row : grid) {
         for (char& c : row) {
-            c = ' ';
+            c = '~';
         }
     }
 }
 
 void Board::drawBoard() const {
-    for (const auto& row : grid) {
+    std::vector<std::vector<char>> board = grid;
+    for (const auto& figure : figures) {
+        figure.second->draw(board);
+    }
+    for (const auto& row : board) {
         for (char c : row) {
             std::cout << c;
         }
-        std::cout << "\n";
+        std::cout << std::endl;
     }
 }
 
@@ -35,17 +39,17 @@ void Board::listFigures() const {
     for (const auto& figure : figures) {
         std::string type;
         if (dynamic_cast<Circle*>(figure.second.get())) {
-            type = "Circle";
+            type = "circle";
         } else if (dynamic_cast<Triangle*>(figure.second.get())) {
-            type = "Triangle";
+            type = "triangle";
         } else if (dynamic_cast<Rectangle*>(figure.second.get())) {
-            type = "Rectangle";
+            type = "rectangle";
         } else if (dynamic_cast<Line*>(figure.second.get())) {
-            type = "Line";
+            type = "line";
         } else {
-            type = "Unknown";
+            type = "unknown";
         }
-        std::cout << figure.first << type << figure.second->getParameters() << std::endl;
+        std::cout << figure.first << " " << type << figure.second->getParameters() << std::endl;
     }
 }
 

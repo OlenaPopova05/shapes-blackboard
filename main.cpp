@@ -1,19 +1,76 @@
 #include "Board.h"
 #include "Figure.h"
+#include "iostream"
+#include "sstream"
 
 int main() {
     Board board;
-
-    std::unique_ptr<Figure> triangle = std::make_unique<Triangle>(10, 10, 5);
-    std::unique_ptr<Figure> circle = std::make_unique<Circle>(7, 30, 5);
-    std::unique_ptr<Figure> rectangle = std::make_unique<Rectangle>(2, 5, 5, 5);
-    std::unique_ptr<Figure> line = std::make_unique<Line>(2, 1, 10, 10);
-
-    triangle->draw(board.getGrid());
-    circle->draw(board.getGrid());
-    rectangle->draw(board.getGrid());
-    line->draw(board.getGrid());
-
-    board.drawBoard();
-    return 0;
+    while (true) {
+        std::cout << "Enter the command(draw/list/shapes/add+parameters/undo/clear/save+file path/load+file path): ";
+        std::string input;
+        std::getline(std::cin, input);
+        std::istringstream iss(input);
+        std::string command;
+        std::vector<std::string> parameters;
+        iss >> command;
+        std::string param;
+        while (iss >> param) {
+            parameters.push_back(param);
+        }
+        if (command == "draw") {
+            board.drawBoard();
+        } else if (command == "list") {
+            board.listFigures();
+        } else if (command == "shapes") {
+            std::cout << "> circle coordinates radius" << std::endl;
+            std::cout << "> triangle coordinates height" << std::endl;
+            std::cout << "> rectangle coordinates width height" << std::endl;
+            std::cout << "> line start coordinates end coordinates" << std::endl;
+        } else if (command == "add") {
+            if (parameters.size() < 3) {
+                std::cout << "Invalid parameters" << std::endl;
+                continue;
+            }
+            std::string shape = parameters[0];
+            int x = std::stoi(parameters[1]);
+            int y = std::stoi(parameters[2]);
+            if (shape == "circle") {
+                if (parameters.size() < 4) {
+                    std::cout << "Invalid parameters" << std::endl;
+                    continue;
+                }
+                int radius = std::stoi(parameters[3]);
+                board.addFigure(std::make_unique<Circle>(x, y, radius));
+            } else if (shape == "triangle") {
+                if (parameters.size() < 4) {
+                    std::cout << "Invalid parameters" << std::endl;
+                    continue;
+                }
+                int height = std::stoi(parameters[3]);
+                board.addFigure(std::make_unique<Triangle>(x, y, height));
+            } else if (shape == "rectangle") {
+                if (parameters.size() < 5) {
+                    std::cout << "Invalid parameters" << std::endl;
+                    continue;
+                }
+                int width = std::stoi(parameters[3]);
+                int height = std::stoi(parameters[4]);
+                board.addFigure(std::make_unique<Rectangle>(x, y, width, height));
+            } else if (shape == "line") {
+                if (parameters.size() < 5) {
+                    std::cout << "Invalid parameters" << std::endl;
+                    continue;
+                }
+                int x2 = std::stoi(parameters[3]);
+                int y2 = std::stoi(parameters[4]);
+                board.addFigure(std::make_unique<Line>(x, y, x2, y2));
+            } else {
+                std::cout << "Invalid shape" << std::endl;
+            }
+        } else if (command == "undo") {
+            board.removeLastFigure();
+        } else if (command == "clear") {
+            board.clearBoard();
+        }
+    }
 }
