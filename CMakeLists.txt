@@ -7,4 +7,5 @@ add_executable(untitled6 main.cpp
         Figure.h
         Board.h
         FilleHandler.h
-        Board.cpp)
+        Board.cpp
+        Figure.cpp)

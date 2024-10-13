@@ -7,9 +7,8 @@ private:
     static constexpr int BOARD_WIDTH = 80;
     static constexpr int BOARD_HEIGHT = 25;
     int figureID;
+    std::vector<std::pair<int, std::unique_ptr<Figure>>> figures;
     std::vector<std::vector<char>> grid;
-    std::vector<std::unique_ptr<Figure>> figures;
-
 public:
     Board();
 
@@ -22,4 +21,6 @@ public:
     void drawBoard() const;
 
     void listFigures() const;
+
+    std::vector<std::vector<char>>& getGrid();
 };
