@@ -1,5 +1,6 @@
 #include "Board.h"
 #include "Figure.h"
+#include "FilleHandler.h"
 #include "iostream"
 #include "sstream"
 
@@ -71,6 +72,24 @@ int main() {
             board.removeLastFigure();
         } else if (command == "clear") {
             board.clearBoard();
+        } else if (command == "save") {
+            if (parameters.size() < 1) {
+                std::cout << "Invalid parameters" << std::endl;
+                continue;
+            }
+            std::string filename = parameters[0];
+            FileHandler fileHandler;
+            fileHandler.save(board, filename);
+        } else if (command == "load") {
+            if (parameters.size() < 1) {
+                std::cout << "Invalid parameters" << std::endl;
+                continue;
+            }
+            std::string filename = parameters[0];
+            FileHandler fileHandler;
+            fileHandler.load(board, filename);
+        } else {
+            std::cout << "Invalid command" << std::endl;
         }
     }
 }

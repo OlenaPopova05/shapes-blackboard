@@ -22,5 +22,7 @@ public:
 
     void listFigures() const;
 
-    std::vector<std::vector<char>>& getGrid();
+    std::vector<std::pair<int, std::unique_ptr<Figure>>>& getBoard();
+
+    std::string getType(int figureID) const;
 };

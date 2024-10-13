@@ -53,6 +53,25 @@ void Board::listFigures() const {
     }
 }
 
-std::vector<std::vector<char>>& Board::getGrid() {
-    return grid;
+std::vector<std::pair<int, std::unique_ptr<Figure>>>& Board::getBoard() {
+    return figures;
+}
+
+std::string Board::getType(int figureID) const {
+    for (const auto& figure : figures) {
+        if (figure.first == figureID) {
+            if (dynamic_cast<Circle*>(figure.second.get())) {
+                return "circle";
+            } else if (dynamic_cast<Triangle*>(figure.second.get())) {
+                return "triangle";
+            } else if (dynamic_cast<Rectangle*>(figure.second.get())) {
+                return "rectangle";
+            } else if (dynamic_cast<Line*>(figure.second.get())) {
+                return "line";
+            } else {
+                return "unknown";
+            }
+        }
+    }
+    return "unknown";
 }
